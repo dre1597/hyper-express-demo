@@ -46,6 +46,26 @@ app.post('/forbidden', (req, res) => {
   });
 });
 
+app.upgrade('ws/connect', async (req, res) => {
+  res.upgrade(({
+    user_id: 1,
+    event: `news`
+  }));
+});
+
+app.ws('/ws/connect', (ws, req) => {
+  console.log('ws connect');
+
+  ws.on('message', (message) => {
+    console.log(message);
+    ws.send(message);
+  });
+
+  ws.on('close', () => {
+    console.log('ws close');
+  });
+});
+
 const port = process.env.PORT || 3000;
 
 app.listen(port).then(() => {
