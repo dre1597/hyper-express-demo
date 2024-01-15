@@ -14,6 +14,19 @@ app.post('/posts/:postId/comments/:commentId', async (req, res) => {
   res.send(JSON.stringify({ headers, postId, commentId, query, body }));
 });
 
+app.post('/forbidden', (req, res) => {
+  res.atomic(() => {
+    res.status(403)
+      .header('x-app-id', 'hyper-express')
+      .cookie('timeout', 'forbidden', 1000 * 60 * 30, {
+        secure: true,
+        httpOnly: true
+      }).cookie('other_cookie', null)
+      .type('json')
+      .send(JSON.stringify({ message: 'Forbidden' }));
+  });
+});
+
 const port = process.env.PORT || 3000;
 
 app.listen(port).then(() => {

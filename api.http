@@ -4,3 +4,11 @@ Content-Type: application/json
 {
   "text": "foo"
 }
+
+###
+
+POST localhost:3000/forbidden
+Content-Type: application/json
+
+{
+}
