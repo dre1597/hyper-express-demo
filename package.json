@@ -1,0 +1,15 @@
+{
+  "name": "hyper-express-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --watch src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "hyper-express": "^6.14.8"
+  }
+}
