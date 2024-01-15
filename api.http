@@ -1,0 +1,6 @@
+POST localhost:3000/posts/123/comments/123?userId=123&approved=true
+Content-Type: application/json
+
+{
+  "text": "foo"
+}

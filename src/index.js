@@ -5,6 +5,15 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
+app.post('/posts/:postId/comments/:commentId', async (req, res) => {
+  const headers = req.headers;
+  const { postId, commentId } = req.path_parameters;
+  const query = req.path_query;
+  const body = await req.json();
+
+  res.send(JSON.stringify({ headers, postId, commentId, query, body }));
+});
+
 const port = process.env.PORT || 3000;
 
 app.listen(port).then(() => {
