@@ -1,7 +1,26 @@
 const HyperExpress = require('hyper-express');
 const app = new HyperExpress.Server();
 
-app.get('/', (req, res) => {
+
+app.use((req, res, next) => {
+  console.log('global middleware');
+  next();
+});
+
+const middleware1 = (req, res, next) => {
+  console.log('middleware1');
+  next();
+};
+
+const middleware2 = (req, res, next) => {
+  console.log('middleware2');
+  next();
+};
+
+
+app.get('/', {
+  middlewares: [middleware1, middleware2]
+}, (req, res) => {
   res.send('Hello World!');
 });
 
